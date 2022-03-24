@@ -29,6 +29,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'rest_framework.authtoken',
+    'djoser',
 ]
 
 MIDDLEWARE = [
@@ -105,4 +107,27 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticated',
+    ],
+
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication',
+    ],
+}
+
+
+DJOSER = {
+    'SERIALIZERS': {
+        'user_create': 'clients.serializers.ClientCreateSerializer',
+    },
+    'HIDE_USERS': False,
+}
+
+
 ADMIN_EMPTY_VALUE = '-пусто-'
+
+DATA_DIR = os.path.join(BASE_DIR, 'data')
+
+WATERMARK_PATH = os.path.join(DATA_DIR, 'watermark.png')
