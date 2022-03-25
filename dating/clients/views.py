@@ -13,6 +13,7 @@ from .serializers import (ClientCreateSerializer, ClientSerializer,
                           LikeSerializer)
 from .utilities import ImageEditor, send_emails
 from .models import Client, Like
+from .filters import ClientFilter
 
 
 class CreateClientView(APIView):
@@ -83,6 +84,6 @@ class ClientsListView(generics.ListAPIView):
     """
     queryset = Client.objects.all()
     serializer_class = ClientSerializer
+    filterset_class = ClientFilter
     permission_classes = [IsAuthenticated]
     filter_backends = [DjangoFilterBackend]
-    filterset_fields = ['gender', 'first_name', 'last_name']

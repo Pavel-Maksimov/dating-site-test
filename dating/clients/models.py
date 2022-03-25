@@ -53,31 +53,15 @@ class ClientManager(BaseUserManager):
 class Client(AbstractUser):
     """Define a Client model."""
 
-    email = models.EmailField(
-        max_length=254,
-        unique=True
-    )
-    first_name = models.CharField(
-        'имя',
-        max_length=150
-    )
-    last_name = models.CharField(
-        'фамилия',
-        max_length=150
-    )
-    gender = models.CharField(
-        'пол',
-        max_length=50,
-        choices=GENDER_CHOICES
-    )
-    avatar = models.ImageField(
-        'аватарка',
-        upload_to='avatars/'
-    )
-    password = models.CharField(
-        'пароль',
-        max_length=150
-    )
+    email = models.EmailField(max_length=254, unique=True)
+    first_name = models.CharField('имя', max_length=150)
+    last_name = models.CharField('фамилия', max_length=150)
+    gender = models.CharField('пол', max_length=50, choices=GENDER_CHOICES)
+    avatar = models.ImageField('аватарка', upload_to='avatars/')
+    password = models.CharField('пароль', max_length=150)
+    latitude = models.DecimalField(max_digits=8, decimal_places=6)
+    longitude = models.DecimalField(max_digits=9, decimal_places=6)
+
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ('first_name', 'last_name', 'gender',)
 

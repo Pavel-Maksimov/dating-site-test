@@ -1,4 +1,4 @@
-from django.forms import EmailField
+from geopy import distance
 from djoser.serializers import UserCreateSerializer
 from drf_base64.fields import Base64ImageField
 from rest_framework import serializers
@@ -38,6 +38,7 @@ class ClientSerializer(serializers.ModelSerializer):
             'invalid': 'Не удаётся распознать изображение'
         },
     )
+    distance = serializers.SerializerMethodField()
 
     class Meta:
         model = Client
@@ -46,8 +47,18 @@ class ClientSerializer(serializers.ModelSerializer):
             'first_name',
             'last_name',
             'gender',
-            'avatar'
+            'avatar',
+            'distance',
         )
+
+    def get_distance(self, obj):
+        """Return dictance between current user and Client object in km.
+
+        """
+        current_user = self.context['request'].user
+        point1_coords = (current_user.longitude, current_user.latitude)
+        point2_coords = (obj.longitude, obj.latitude)
+        return round(distance.distance(point1_coords, point2_coords).km, 2)
 
 
 class LikeSerializer(serializers.ModelSerializer):
