@@ -2,12 +2,15 @@ import os
 
 from django.conf import settings
 from django.shortcuts import get_object_or_404
+from rest_framework import generics
 from rest_framework.views import APIView
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.permissions import AllowAny, IsAuthenticated
+from django_filters.rest_framework import DjangoFilterBackend
 
-from .serializers import ClientCreateSerializer, LikeSerializer
+from .serializers import (ClientCreateSerializer, ClientSerializer,
+                          LikeSerializer)
 from .utilities import ImageEditor, send_emails
 from .models import Client, Like
 
@@ -69,3 +72,17 @@ class MatchClientView(APIView):
             serializer.errors,
             status=status.HTTP_400_BAD_REQUEST
         )
+
+
+class ClientsListView(generics.ListAPIView):
+    """View to look a list of clients.
+
+    Filtering is available on fields:
+    'gender', 'first_name', 'last_name'.
+    Available for authenticated users only.
+    """
+    queryset = Client.objects.all()
+    serializer_class = ClientSerializer
+    permission_classes = [IsAuthenticated]
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ['gender', 'first_name', 'last_name']

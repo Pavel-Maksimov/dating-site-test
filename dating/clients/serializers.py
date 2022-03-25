@@ -1,3 +1,4 @@
+from django.forms import EmailField
 from djoser.serializers import UserCreateSerializer
 from drf_base64.fields import Base64ImageField
 from rest_framework import serializers
@@ -24,10 +25,29 @@ class ClientCreateSerializer(UserCreateSerializer):
             'username',
             'first_name',
             'last_name',
+            'gender',
             'password',
             'avatar'
         )
         lookup_field = 'username'
+
+
+class ClientSerializer(serializers.ModelSerializer):
+    avatar = CustomImageFiled(
+        error_messages={
+            'invalid': 'Не удаётся распознать изображение'
+        },
+    )
+
+    class Meta:
+        model = Client
+        fields = (
+            'username',
+            'first_name',
+            'last_name',
+            'gender',
+            'avatar'
+        )
 
 
 class LikeSerializer(serializers.ModelSerializer):
