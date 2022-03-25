@@ -1,8 +1,6 @@
-from multiprocessing.connection import Client
 from django.urls import path
 
 from .views import ClientsListView, CreateClientView, MatchClientView
-
 
 urlpatterns = [
     path('clients/create/', CreateClientView.as_view()),

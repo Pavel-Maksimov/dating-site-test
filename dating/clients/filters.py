@@ -1,5 +1,5 @@
-from geopy import distance
 import django_filters
+from geopy import distance
 
 from .models import Client
 
@@ -20,9 +20,9 @@ class ClientFilter(django_filters.FilterSet):
         """Approximately filter clients according to distance
         from current user.
 
-        Inaquracy get longer distances for directions that
+        Inaccuracy get longer distances for directions that
         differ from accurately east, west, north and south.
-        The reason is that the function limit the region not by circle,
+        The reason is that the function limits the region not by circle,
         but by square.
         """
         current_user = self.request.user

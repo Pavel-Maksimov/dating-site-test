@@ -1,0 +1,3 @@
+GET  http://127.0.0.1:8000/api/list/?distance=3000&gender=женский
+Content-Type: application/json
+Authorization: Token c45a35df2305cc950cb10ca5f289229c440506b3

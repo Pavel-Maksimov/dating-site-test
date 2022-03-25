@@ -1,0 +1,7 @@
+POST  http://127.0.0.1:8000/api/auth/token/login/
+Content-Type: application/json
+
+{
+    "password": "gibbson452087",
+    "email": "max@mail.ru"
+}

@@ -1,0 +1,7 @@
+POST  http://127.0.0.1:8000/api/clients/1/match/
+Content-Type: application/json
+Authorization: Token c45a35df2305cc950cb10ca5f289229c440506b3
+
+{
+    "like": "true"
+}

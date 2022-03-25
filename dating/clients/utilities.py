@@ -1,7 +1,4 @@
-import math as m
-from decimal import Decimal
 from django.core.mail import send_mass_mail
-
 from PIL import Image, ImageEnhance
 
 

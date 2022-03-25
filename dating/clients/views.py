@@ -2,18 +2,17 @@ import os
 
 from django.conf import settings
 from django.shortcuts import get_object_or_404
-from rest_framework import generics
-from rest_framework.views import APIView
-from rest_framework import status
-from rest_framework.response import Response
-from rest_framework.permissions import AllowAny, IsAuthenticated
 from django_filters.rest_framework import DjangoFilterBackend
+from rest_framework import generics, status
+from rest_framework.permissions import AllowAny, IsAuthenticated
+from rest_framework.response import Response
+from rest_framework.views import APIView
 
+from .filters import ClientFilter
+from .models import Client, Like
 from .serializers import (ClientCreateSerializer, ClientSerializer,
                           LikeSerializer)
 from .utilities import ImageEditor, send_emails
-from .models import Client, Like
-from .filters import ClientFilter
 
 
 class CreateClientView(APIView):
@@ -38,7 +37,8 @@ class CreateClientView(APIView):
 class MatchClientView(APIView):
     """View to match other clients.
 
-    If current user sends like=True to a client, check if
+    *like - "true" or "false".
+    If current user sends "like"="true" to a client, check if
     the client have already sent like=True to him (mutual sympathy).
     In this case send back client's email to current user and
     send email massages to them both.

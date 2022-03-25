@@ -1,6 +1,6 @@
-from geopy import distance
 from djoser.serializers import UserCreateSerializer
 from drf_base64.fields import Base64ImageField
+from geopy import distance
 from rest_framework import serializers
 
 from .models import Client, Like
@@ -22,12 +22,14 @@ class ClientCreateSerializer(UserCreateSerializer):
         model = Client
         fields = (
             'email',
-            'username',
+            # 'username',
             'first_name',
             'last_name',
             'gender',
             'password',
-            'avatar'
+            'avatar',
+            'latitude',
+            'longitude',
         )
         lookup_field = 'username'
 

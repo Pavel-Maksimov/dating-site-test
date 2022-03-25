@@ -1,7 +1,6 @@
 from django.contrib.auth.models import AbstractUser, BaseUserManager
 from django.db import models
 
-
 GENDER_CHOICES = (
     ('мужской', 'мужской'),
     ('женский', 'женский'),
