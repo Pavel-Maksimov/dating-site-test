@@ -1,3 +1,5 @@
+from django.core.mail import send_mass_mail
+
 from PIL import Image, ImageEnhance
 
 
@@ -35,3 +37,36 @@ class ImageEditor():
                 transparent = Image.composite(layer,  base_image,  layer)
                 transparent_rgb = transparent.convert('RGB')
         transparent_rgb.save(self.image_path)
+
+
+def send_emails(client1, client2, email_name):
+    """Send emails to two clients with a message
+    about mutual sympathy.
+
+    Arguments:
+    client1, client2 - Client objects to send emails to.
+    email_name - email name messages is sent from.
+    """
+
+    SUBJECT = 'Вы понравились!'
+    MESSAGE = 'Вы понравились  {name}! Почта участника: {email}.'
+
+    message1 = (
+        SUBJECT,
+        MESSAGE.format(name=client1.first_name, email=client1.email),
+        f'{email_name}',
+        [f'{client2.email}']
+    )
+    message2 = (
+        SUBJECT,
+        MESSAGE.format(name=client2.first_name, email=client2.email),
+        f'{email_name}',
+        [f'{client1.email}']
+    )
+    send_mass_mail(
+        (
+            message1,
+            message2
+        ),
+        fail_silently=False
+    )

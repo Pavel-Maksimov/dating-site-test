@@ -82,3 +82,26 @@ class Client(AbstractUser):
     REQUIRED_FIELDS = ('first_name', 'last_name', 'gender',)
 
     objects = ClientManager()
+
+
+class Like(models.Model):
+    matcher = models.ForeignKey(
+        Client, on_delete=models.CASCADE,
+        related_name='likes_from'
+    )
+    matched = models.ForeignKey(
+        Client, on_delete=models.CASCADE,
+        related_name='likes_to'
+    )
+    like = models.BooleanField()
+
+    class Meta:
+        verbose_name = 'Оценка'
+        verbose_name_plural = 'Оценки'
+        models.UniqueConstraint(
+            fields=('matcher', 'matched'),
+            name='unique_like'
+        )
+
+        def __str__(self):
+            return f'Оценка {self.matcher} пользователя {self.matched}'

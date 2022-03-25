@@ -131,3 +131,10 @@ ADMIN_EMPTY_VALUE = '-пусто-'
 DATA_DIR = os.path.join(BASE_DIR, 'data')
 
 WATERMARK_PATH = os.path.join(DATA_DIR, 'watermark.png')
+
+
+EMAIL_NAME = 'dating-online@mail.ru'
+
+EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
+
+EMAIL_FILE_PATH = os.path.join(BASE_DIR, 'sent_emails')
