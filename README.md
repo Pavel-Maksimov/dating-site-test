@@ -73,5 +73,6 @@ python manage.py migrate
 (venv)$python manage.py runserver
 ```
 Для остановки сервера используйте сочетание клавиш **Ctrl+C**.<br>
+https://dating-site-test.herokuapp.com/api/clients/create/<br>
 
 В директории 'requests_templates' сохранены запоненные шаблоны для запросов, которыми можно воспользоваться для ручного тестирования проекта.<br>
