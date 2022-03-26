@@ -16,6 +16,7 @@ ALLOWED_HOSTS = ['*']
 AUTH_USER_MODEL = 'clients.Client'
 
 INSTALLED_APPS = [
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'clients.apps.ClientsConfig',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -92,6 +93,7 @@ USE_L10N = True
 
 USE_TZ = True
 
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 STATIC_URL = '/static/'
 
