@@ -16,7 +16,6 @@ ALLOWED_HOSTS = ['*']
 AUTH_USER_MODEL = 'clients.Client'
 
 INSTALLED_APPS = [
-    'whitenoise.middleware.WhiteNoiseMiddleware',
     'clients.apps.ClientsConfig',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -32,6 +31,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
