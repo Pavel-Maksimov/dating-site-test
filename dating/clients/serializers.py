@@ -22,7 +22,7 @@ class ClientCreateSerializer(UserCreateSerializer):
         model = Client
         fields = (
             'email',
-            # 'username',
+            'username',
             'first_name',
             'last_name',
             'gender',
