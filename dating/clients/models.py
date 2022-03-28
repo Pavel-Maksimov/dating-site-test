@@ -1,4 +1,4 @@
-from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
+from django.contrib.auth.models import AbstractUser, BaseUserManager
 from django.db import models
 
 GENDER_CHOICES = (
@@ -49,7 +49,7 @@ class ClientManager(BaseUserManager):
         return self._create_user(email, password, **extra_fields)
 
 
-class Client(AbstractBaseUser):
+class Client(AbstractUser):
     """Define a Client model."""
 
     email = models.EmailField(max_length=254, unique=True)
@@ -58,8 +58,8 @@ class Client(AbstractBaseUser):
     gender = models.CharField('пол', max_length=50, choices=GENDER_CHOICES)
     avatar = models.ImageField('аватарка', upload_to='avatars/')
     password = models.CharField('пароль', max_length=150)
-    latitude = models.DecimalField(max_digits=8, decimal_places=6)
-    longitude = models.DecimalField(max_digits=9, decimal_places=6)
+    latitude = models.DecimalField(max_digits=8, null=True, decimal_places=6)
+    longitude = models.DecimalField(max_digits=9, null=True, decimal_places=6)
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ('first_name', 'last_name', 'gender',)
