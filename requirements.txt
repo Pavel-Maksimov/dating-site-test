@@ -43,3 +43,4 @@ urllib3==1.26.9
 drf-yasg
 gunicorn
 whitenoise
+psycopg2
