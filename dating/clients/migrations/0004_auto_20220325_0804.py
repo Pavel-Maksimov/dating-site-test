@@ -15,11 +15,13 @@ class Migration(migrations.Migration):
             name='latitude',
             field=models.DecimalField(decimal_places=6, default=12, max_digits=8),
             preserve_default=False,
+            null=True,
         ),
         migrations.AddField(
             model_name='client',
             name='longitude',
             field=models.DecimalField(decimal_places=6, default=13, max_digits=9),
             preserve_default=False,
+            null=True,
         ),
     ]
