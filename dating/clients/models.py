@@ -1,4 +1,4 @@
-from django.contrib.auth.models import AbstractUser, BaseUserManager
+from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 from django.db import models
 
 GENDER_CHOICES = (
@@ -49,7 +49,7 @@ class ClientManager(BaseUserManager):
         return self._create_user(email, password, **extra_fields)
 
 
-class Client(AbstractUser):
+class Client(AbstractBaseUser):
     """Define a Client model."""
 
     email = models.EmailField(max_length=254, unique=True)
