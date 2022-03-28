@@ -31,7 +31,6 @@ class ClientCreateSerializer(UserCreateSerializer):
             'latitude',
             'longitude',
         )
-        lookup_field = 'username'
 
 
 class ClientSerializer(serializers.ModelSerializer):
